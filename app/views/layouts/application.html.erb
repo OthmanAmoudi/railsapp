@@ -3,7 +3,6 @@
   <head>
     <title>One Month Rails Project</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -11,16 +10,46 @@
   <body>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-inverse navbar-toggleable-sm bg-inverse">
-      <div class="container">
-        <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
-        <ul class="nav navbar-nav">
-          <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link" %></li>
-        </ul>
-      </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg bg-dark">
+    <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
+        </li>
+        <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link" %></li>
+        <% if user_signed_in? %>
+        <li class="nav=item"><%= link_to "Logout", signout_path,method: :delete, class:"nav-link" %> </li>
+        <% else %>
+        <li class="nav=item"><%= link_to "Sign-in", signin_path, class:"nav-link" %> </li>
+        <% end %>
+        <li class="nav-item pull-md-right dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            settings
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+    <!-- Flash messages -->
+    <% flash.each do |name,message| %>
+      <%= content_tag(:div, message, class: "alert alert-info #{name}") %>
+      <% end %>
 
     <!-- Page Content -->
     <%= yield %>
