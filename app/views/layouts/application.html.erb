@@ -7,10 +7,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="bg-light">
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <nav class="navbar navbar-expand-lg">
+    <div class="container">
     <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,28 +25,30 @@
         </li>
         <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
         <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Tweets", tweets_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Admin", admin_path, class: "nav-link" %></li>
         <% if user_signed_in? %>
-        <li class="nav=item"><%= link_to "Logout", signout_path,method: :delete, class:"nav-link" %> </li>
+        <li class="nav-item kkk"><%= link_to "Logout", signout_path,method: :delete, class:"nav-link" %> </li>
         <% else %>
-        <li class="nav=item"><%= link_to "Sign-in", signin_path, class:"nav-link" %> </li>
+        <li class="nav-item kkk"><%= link_to "Sign-in", signin_path, class:"nav-link" %> </li>
         <% end %>
-        <li class="nav-item pull-md-right dropdown">
+        <li class="nav-item kkk dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             settings
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#"><%= link_to "Admin", admin_path, class: "nav-link" %></a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#"><%= link_to "Tweets", tweets_path, class: "nav-link" %></a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><%= link_to "Items", items_path, class: "nav-link" %></a>
+
           </div>
         </li>
 
       </ul>
     </div>
+    </div>
   </nav>
+  <div class="container">
 
 
     <!-- Flash messages -->
@@ -65,6 +68,7 @@
         </center>
       </div>
     </footer>
+    </div>
 
   </body>
 </html>
