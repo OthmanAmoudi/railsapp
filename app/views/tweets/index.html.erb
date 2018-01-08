@@ -8,7 +8,8 @@
 
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">  <%= current_user.email %> </h5>
+    <h4 class="card-title">  <%= current_user.name %> </h4>
+    <h5>  <%= current_user.email %> </h5>
     <p class="card-text">Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %>
     </p>
     <a href="#" class="btn btn-primary">Visit Profile</a>
