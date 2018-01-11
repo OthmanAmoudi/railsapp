@@ -1,24 +1,8 @@
 <div class="container">
-<h1>Tweets</h1>
-<% if user_signed_in? %>
-<%= link_to 'New Tweet', new_tweet_path , class: "btn btn-primary", style: "float:right;"%>
-<% end %>
-<div class="row">
-<div class="col-sm-4">
-
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">  <%= current_user.name %> </h4>
-    <h5>  <%= current_user.email %> </h5>
-    <p class="card-text">Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %>
-    </p>
-    <a href="#" class="btn btn-primary">Visit Profile</a>
-  </div>
-</div>
-
-</div>
-</div>
-
+<h1> <%= @user.email %> </h1>
+<p> <%= @user.username %> </p>
+<p> <%= @user.name %> </p>
+<h4> Tweets: </h4>
 <ul class="list-group">
     <% @tweets.each do |tweet| %>
       <li class="list-group-item">
@@ -32,8 +16,4 @@
           </li>
     <% end %>
 </ul>
-
-<br>
-
-
 </div>
