@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  
-  get 'users/:username', to: 'users#show', as: 'user'
+
+  #get 'users/:username', to: 'users#show', as: 'user'
+  #The Above route is same as below:
+
+  resources :users, only: :show, param: :username do
+    member do
+      post 'follow', to: 'users#create'
+      delete 'unfollow', to: 'users#destroy'
+    end
+  end
+
   resources :items
   resources :tweets
   ActiveAdmin.routes(self)
   devise_for :users
 
-  as :user do 
+  as :user do
     get 'signin' => 'devise/sessions#new'
     delete 'signout' => 'devise/sessions#destroy'
     get 'signup' => 'devise/registrations#new'
@@ -18,6 +27,7 @@ Rails.application.routes.draw do
   get 'contact' => 'pages#contact'
   get 'tweets' => 'tweets#show'
   get 'admin' => 'admin'
-  get 'users' => 'users#all', as: 'All_Users'
+  get 'allusers' => 'users#all', as: 'allusers'
+  get 'feed', to: 'feed#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,15 @@
 <div class="container">
-<h4> Users </h4>
+    <h4> All Users </h4>
+    <% counter = 0 %>
     <% @users.each do |u| %>
-        <p> <% u.email %> </p>
-    <% end %>
+        <% counter = counter + 1 %>
+            <%= content_tag(:h5, u.email, class:"text-success") %>
+                <p>
+                    <u>visit profile</u>:
+                    <%= link_to u.username, user_path(u.username) %>
+                </p>
+                <% if counter != @users.length %>
+                    <hr>
+                <% end %>
+        <% end %>
 </div>

@@ -1,15 +1,4 @@
-class UsersController < ApplicationController
-
-  before_action :authenticate_user!, except: [:create, :destroy]
-  def show
-    @user = User.find_by(username: params[:username])
-    @tweets = @user.tweets
-  end
-
-  def all
-    @users = User.all
-  end
-
+class FollowsController < ApplicationController
   def create
     user = User.find_by(username: params[:username])
     Follow.create(followable: user, follower: current_user)
