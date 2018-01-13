@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:create, :destroy]
+#  before_action :authenticate_user!, except: [:create, :destroy]
   def show
     @user = User.find_by(username: params[:username])
     @tweets = @user.tweets

@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  #get 'users/:username', to: 'users#show', as: 'user'
+  ActiveAdmin.routes(self)
+  devise_for :users
+  as :user do
+    get 'signin' => 'devise/sessions#new'
+    delete 'signout' => 'devise/sessions#destroy'
+    get 'signup' => 'devise/registrations#new'
+  end
+    #get 'users/:username', to: 'users#show', as: 'user'
   #The Above route is same as below:
-
   resources :users, only: :show, param: :username do
     member do
       post 'follow', to: 'users#create'
@@ -12,14 +18,6 @@ Rails.application.routes.draw do
 
   resources :items
   resources :tweets
-  ActiveAdmin.routes(self)
-  devise_for :users
-
-  as :user do
-    get 'signin' => 'devise/sessions#new'
-    delete 'signout' => 'devise/sessions#destroy'
-    get 'signup' => 'devise/registrations#new'
-  end
 
   root 'pages#home'
   get '/' => 'pages#home'
