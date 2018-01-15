@@ -13,7 +13,7 @@
     <h5>  <%= current_user.email %> </h5>
     <p class="card-text">Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %>
     </p>
-    <a href="#" class="btn btn-primary">Visit Profile</a>
+    <%= link_to  "Visit Profile", user_path(current_user.username), class: "btn btn-primary" %>
   </div>
 </div>
 <% end %>
@@ -25,6 +25,9 @@
     <% @tweets.each do |tweet| %>
       <li class="list-group-item">
         <%= link_to tweet.user.email, user_path(tweet.user.username) %>
+        <% if tweet.image? %>
+        <%= image_tag  tweet.image %>
+        <% end %>
         <%= content_tag(:p, tweet.content, class: "text-warning") %>
         <%= link_to 'Show', tweet %>
         <% if tweet.user == current_user %>

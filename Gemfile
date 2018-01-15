@@ -35,6 +35,7 @@ gem 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower'
 gem 'acts_as_votable', '~> 0.11.1'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

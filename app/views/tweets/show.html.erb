@@ -4,6 +4,10 @@
   <%= link_to @tweet.user.email, user_path(@tweet.user.username) %>
 </p>
 
+<% if @tweet.image? %>
+<%= image_tag  @tweet.image %>
+<% end %>
+
 <p>
   <strong>Content:</strong>
   <%= @tweet.content %>
